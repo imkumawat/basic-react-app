@@ -17,10 +17,10 @@ phases:
       - echo Compiling the Node.js code
       - npm run build-$REACT_ENV
 
-    post_build:
-      commands:
-        - echo Build completed on `date`
-        - echo Pushing build to s3 bucket
-        - aws s3 sync build/ $S3_BUCKET_NAME
-        - echo Invalidating old object from cloud front distribution
-        - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --path '/*'
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing build to s3 bucket
+      - aws s3 sync build/ $S3_BUCKET_NAME
+      - echo Invalidating old object from cloud front distribution
+      - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --path '/*'
