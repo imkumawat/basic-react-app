@@ -21,6 +21,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing build to s3 bucket
-      - aws s3 sync build/ $S3_BUCKET_NAME
+      - aws s3 sync build/ s3://$S3_BUCKET_NAME
       - echo Invalidating old object from cloud front distribution
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --path '/*'
